@@ -31,8 +31,9 @@ function displayCity(city) {
         var date = moment().format("MMMM Do YYYY");
         $(".city").text(city + " " + date);
         console.log(response.current.weather[0].icon);
-        $(".city").append(
-          "<img scr= http://openweathermap.org/img/wn/10d.png>"
+        var icon = response.current.weather[0].icon;
+        $(".icon").append(
+          "<img src='https://openweathermap.org/img/w/" + icon + ".png'></img>"
         );
         $(".temp").text("Temperature: " + response.current.temp);
         $(".humidity").text("Humidity: " + response.current.humidity);
