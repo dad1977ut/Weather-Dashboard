@@ -17,8 +17,37 @@ function displayCity(city) {
       var lat = response.coord.lat;
       console.log(lon);
       console.log(lat);
+      var newQueryURL =
+        "https:api.openweathermap.org/data/2.5/onecall?lat=" +
+        lat +
+        "&lon=" +
+        lon +
+        "&units=imperial&appid=" +
+        APIKey;
+      $.ajax({
+        url: newQueryURL,
+        method: "GET",
+      }).then(function (response) {
+        $(".icon").empty();
+        var icon = response.current.weather[0].icon;
+        var alt = response.current.weather[0].description;
+        $(".city").text(city);
+        console.log(alt);
+        $(".icon").append(
+          "<img src=https://openweathermap.org/img/w/" +
+            icon +
+            ".png alt=" +
+            alt +
+            ">"
+        );
+        $(".temp").text(response.current.temp);
+        $(".humidity").text(response.current.humidity);
+        $(".wind").text(response.current.wind_speed);
+        $(".uv").text(response.current.uvi);
+      });
     });
 }
+
 $("#search").on("click", function (event) {
   event.target;
   var current = $(event.target).siblings(".textarea").val();
