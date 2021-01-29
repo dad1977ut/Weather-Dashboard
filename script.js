@@ -38,32 +38,34 @@ function displayCity(city) {
         $(".icon").append(
           "<img src=https://openweathermap.org/img/w/" + icon + ".png>"
         );
-        $(".temp").text(response.current.temp);
-        $(".humidity").text(response.current.humidity);
-        $(".wind").text(response.current.wind_speed);
-        $(".uv").text(response.current.uvi);
-        var date = new Date(response.daily[1].dt * 1000);
-        var forecastIcon = response.daily[1].weather[0].icon;
-        console.log(forecastIcon);
-        $("#forecast").append(
-          `<div class="col-2">
+        $(".temp").text("Temperature: " + response.current.temp);
+        $(".humidity").text("Humidity: " + response.current.humidity);
+        $(".wind").text("Wind Speed: " + response.current.wind_speed);
+        $(".uv").text("UV Index: " + response.current.uvi);
+        for (var i = 1; i < 6; i++) {
+          var date = new Date(response.daily[i].dt * 1000);
+          var forecastIcon = response.daily[i].weather[0].icon;
+          console.log(forecastIcon);
+          $("#forecast").append(
+            `<div class="col-2">
             <div class="card">
-              <div class="card-body p-1">
-                <h5 class="card-title">${
-                  date.getMonth() +
-                  1 +
-                  "/" +
-                  date.getDate() +
-                  "/" +
-                  date.getFullYear()
-                }</h5>
-                <img src=https://openweathermap.org/img/w/${forecastIcon}.png>
-                <p class="card-text">${response.daily[1].temp.day}</p>
-                <p class="card-text">${response.daily[1].humidity}</p>
-              </div>
+            <div class="card-body p-1">
+            <h5 class="card-title">${
+              date.getMonth() +
+              1 +
+              "/" +
+              date.getDate() +
+              "/" +
+              date.getFullYear()
+            }</h5>
+            <img src=https://openweathermap.org/img/w/${forecastIcon}.png>
+            <p class="card-text">temp: ${response.daily[i].temp.day}</p>
+            <p class="card-text">Humidty: ${response.daily[i].humidity}</p>
             </div>
-          </div>`
-        );
+            </div>
+            </div>`
+          );
+        }
       });
     });
 }
