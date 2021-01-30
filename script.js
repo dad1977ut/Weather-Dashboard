@@ -42,6 +42,13 @@ function displayCity(city) {
         $(".humidity").text("Humidity: " + response.current.humidity);
         $(".wind").text("Wind Speed: " + response.current.wind_speed);
         $(".uv").text("UV Index: " + response.current.uvi);
+        if (response.current.uvi > 8) {
+          $(".uv").addClass("bg-danger");
+        } else if (response.current.uvi < 2) {
+          $(".uv").addClass("bg-success");
+        } else {
+          $(".uv").addClass("bg-warning");
+        }
         for (var i = 1; i < 6; i++) {
           var date = new Date(response.daily[i].dt * 1000);
           var forecastIcon = response.daily[i].weather[0].icon;
