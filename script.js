@@ -24,6 +24,7 @@ function displayCity(city) {
         lon +
         "&units=imperial&appid=" +
         APIKey;
+      console.log(newQueryURL);
       $.ajax({
         url: newQueryURL,
         method: "GET",
