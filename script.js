@@ -18,7 +18,7 @@ function displayCity(city) {
       console.log(lon);
       console.log(lat);
       var newQueryURL =
-        "https:api.openweathermap.org/data/2.5/onecall?lat=" +
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
         lat +
         "&lon=" +
         lon +
